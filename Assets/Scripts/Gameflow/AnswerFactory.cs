@@ -34,8 +34,8 @@ public class AnswerFactory : MonoBehaviour
         {
             answerOptions[i] = seedAnswer + i -1;
         }
-        Debug.Log($"Given {seedAnswer}, came up with {answerOptions[0]},{answerOptions[1]}, {answerOptions[2]}," +
-            $"{answerOptions[3]}");
+        //Debug.Log($"Given {seedAnswer}, came up with {answerOptions[0]},{answerOptions[1]}, {answerOptions[2]}," +
+        //    $"{answerOptions[3]}");
         return answerOptions;
     }
 
@@ -43,8 +43,8 @@ public class AnswerFactory : MonoBehaviour
     {
         indexOfCorrectAnswer = UnityEngine.Random.Range(0, answerArray.Length);
         answerArray[indexOfCorrectAnswer] = correctAnswer;
-        Debug.Log($"inserted correct answer of {correctAnswer} in spot {indexOfCorrectAnswer} to yield {answerArray[0]}," +
-            $"{answerArray[1]}, {answerArray[2]}, {answerArray[3]}");
+        //Debug.Log($"inserted correct answer of {correctAnswer} in spot {indexOfCorrectAnswer} to yield {answerArray[0]}," +
+        //    $"{answerArray[1]}, {answerArray[2]}, {answerArray[3]}");
         return answerArray;
     }
 }

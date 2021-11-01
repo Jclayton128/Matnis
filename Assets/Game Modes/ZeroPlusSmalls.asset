@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2339827003ad1a142b0f46b97caed4e4, type: 3}
-  m_Name: Mixed
+  m_Name: ZeroPlusSmalls
   m_EditorClassIdentifier: 
   ModeSprite: {fileID: 0}
-  ModeName: Small Mixed
+  ModeName: SmallPlusZero
   SelectedMode: 0

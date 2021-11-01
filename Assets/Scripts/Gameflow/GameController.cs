@@ -7,9 +7,11 @@ public class GameController : MonoBehaviour
 {
     //init
     UI_Controller uic;
+    ProblemFactory pf;
+    ScoreKeeper sk;
     GameModeHolder gmh;
     public Action OnGameStart;
-    ProblemFactory pf;
+
 
     //state
     public bool IsInGame { get; private set; } = false;
@@ -19,6 +21,8 @@ public class GameController : MonoBehaviour
         uic = FindObjectOfType<UI_Controller>();
         gmh = GetComponent<GameModeHolder>();
         pf = FindObjectOfType<ProblemFactory>();
+        sk = FindObjectOfType<ScoreKeeper>();
+
 
     }
 
@@ -34,6 +38,7 @@ public class GameController : MonoBehaviour
     public void HandleCorrectAnswer()
     {
         Debug.Log("Correct!");
+        sk.IncrementProblemCount();
         //Do the fun effect
         //Go to the next problem.
         pf.CreateNewProblem();

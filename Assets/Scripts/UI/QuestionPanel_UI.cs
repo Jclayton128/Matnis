@@ -9,14 +9,14 @@ public class QuestionPanel_UI : UI_Driver
 {
     [SerializeField] TextMeshProUGUI topTMP = null;
     [SerializeField] TextMeshProUGUI bottomTMP = null;
-    [SerializeField] TextMeshProUGUI answerTMP = null;
+    [SerializeField] TextMeshProUGUI operatorTMP = null;
     [SerializeField] Image[] _panelImages = null;
 
     public override void ShowHideAllUIElements(bool shouldBeShown)
     {
         topTMP.enabled = shouldBeShown;
         bottomTMP.enabled = shouldBeShown;
-        answerTMP.enabled = shouldBeShown;
+        operatorTMP.enabled = shouldBeShown;
         foreach (var image in _panelImages)
         {
             image.enabled = shouldBeShown;
@@ -25,9 +25,9 @@ public class QuestionPanel_UI : UI_Driver
 
     public void UpdateProblem(Problem incomingProblem)
     {
-        topTMP.text = $"  " + incomingProblem.TopNumber.ToString();
-        bottomTMP.text = $"+ {incomingProblem.BottomNumber.ToString()}";
-        answerTMP.text = "  ?";
+        topTMP.text = incomingProblem.TopNumber.ToString();
+        bottomTMP.text = incomingProblem.BottomNumber.ToString();
+        operatorTMP.text = $"{incomingProblem.OpChar}";
 
         RescaleTextSizes();
     }
@@ -40,15 +40,15 @@ public class QuestionPanel_UI : UI_Driver
         {
             topTMP.fontSize = bottomTMP.fontSize;
             topTMP.ForceMeshUpdate();
-            answerTMP.fontSize = bottomTMP.fontSize;
-            answerTMP.ForceMeshUpdate();
+            operatorTMP.fontSize = bottomTMP.fontSize;
+            operatorTMP.ForceMeshUpdate();
         }
         else
         {
             bottomTMP.fontSize = topTMP.fontSize;
             bottomTMP.ForceMeshUpdate();
-            answerTMP.fontSize = topTMP.fontSize;
-            answerTMP.ForceMeshUpdate();
+            operatorTMP.fontSize = topTMP.fontSize;
+            operatorTMP.ForceMeshUpdate();
         }
     }
 }

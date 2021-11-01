@@ -34,22 +34,43 @@ public class ProblemFactory : MonoBehaviour
     {
         Problem problem = new Problem();
         switch (gmh.GetCurrentGameMode().SelectedMode)
-        {
-            //case GameMode.Mode.ZeroPlusSmallMix:
-            default:
+        {            
+            case GameMode.Mode.ZeroPlusSmallMix:
                 problem.TopNumber = 0;
                 problem.BottomNumber = UnityEngine.Random.Range(0, 10);
+                problem.OpChar = '+';
                 problem.Answer = problem.TopNumber + problem.BottomNumber;
-                Debug.Log($"new problem: {problem.TopNumber} + {problem.BottomNumber} = {problem.Answer}");
+                //Debug.Log($"new problem: {problem.TopNumber} + {problem.BottomNumber} = {problem.Answer}");
                 problem = ScrambleProblem(problem);
-                Debug.Log($"post-scrambled problem: {problem.TopNumber} + {problem.BottomNumber} = {problem.Answer}");
+                //Debug.Log($"post-scrambled problem: {problem.TopNumber} + {problem.BottomNumber} = {problem.Answer}");
                 return problem;
 
-            //default:
-            //    problem.TopNumber = 0;
-            //    problem.BottomNumber = 0;
-            //    problem.Answer = 0;
-            //    return problem;
+            case GameMode.Mode.SmallDoubles:
+                int number = UnityEngine.Random.Range(0, 10);
+                problem.TopNumber = number;
+                problem.BottomNumber = number;
+                problem.OpChar = '+';
+                problem.Answer = problem.TopNumber + problem.BottomNumber;
+                problem = ScrambleProblem(problem);
+                return problem;
+
+            case GameMode.Mode.SmallDoublesPlusOne:
+                number = UnityEngine.Random.Range(0, 10);
+                problem.TopNumber = number;
+                problem.BottomNumber = number + 1;
+                problem.OpChar = '+';
+                problem.Answer = problem.TopNumber + problem.BottomNumber;
+                problem = ScrambleProblem(problem);
+                return problem;
+
+
+
+            default:
+                problem.TopNumber = 0;
+                problem.BottomNumber = 0;
+                problem.Answer = 0;
+                problem.OpChar = '+';
+                return problem;
         }
         
     }
@@ -61,6 +82,7 @@ public class ProblemFactory : MonoBehaviour
             Problem scrambledProblem = new Problem();
             scrambledProblem.BottomNumber = problem.TopNumber;
             scrambledProblem.TopNumber = problem.BottomNumber;
+            scrambledProblem.OpChar = problem.OpChar;
             scrambledProblem.Answer = problem.Answer;
             return scrambledProblem;
         }
