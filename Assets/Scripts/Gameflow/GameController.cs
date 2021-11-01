@@ -35,6 +35,14 @@ public class GameController : MonoBehaviour
         pf.CreateNewProblem();
     }
 
+    public void EscapeToMainMenu()
+    {
+        IsInGame = false;
+        uic.ShowHideGameplayPanels(false);
+        uic.ShowHideMainMenuPanel(true);
+        sk.ResetProblemCount();
+    }
+
     public void HandleCorrectAnswer()
     {
         Debug.Log("Correct!");
