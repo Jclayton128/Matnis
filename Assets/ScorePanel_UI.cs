@@ -14,7 +14,7 @@ public class ScorePanel_UI : UI_Driver
 
     public void UpdateScore(int currentScore)
     {
-        scoreTMP.text = "Score: " + currentScore.ToString();
+        scoreTMP.text = "S: " + currentScore.ToString();
     }
     
 }

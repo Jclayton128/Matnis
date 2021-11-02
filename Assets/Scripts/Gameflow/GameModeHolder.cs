@@ -20,6 +20,8 @@ public class GameModeHolder : MonoBehaviour
     {
         gmd = FindObjectOfType<GameModePanel_UI>();
         _currentGameMode = _possibleGameModes[_index];
+        gmd.UpdateGameModeUI(_currentGameMode);
+
     }
 
     public void ToggleLeft()

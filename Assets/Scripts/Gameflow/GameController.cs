@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour
     ProblemFactory pf;
     ScoreKeeper sk;
     GameModeHolder gmh;
+    DiamondHolder dh;
+    EnemyFactory ef;
     public Action OnGameStart;
 
 
@@ -22,6 +24,9 @@ public class GameController : MonoBehaviour
         gmh = GetComponent<GameModeHolder>();
         pf = FindObjectOfType<ProblemFactory>();
         sk = FindObjectOfType<ScoreKeeper>();
+        dh = FindObjectOfType<DiamondHolder>();
+        ef = FindObjectOfType<EnemyFactory>();
+
 
 
     }
@@ -33,6 +38,7 @@ public class GameController : MonoBehaviour
         IsInGame = true;
         OnGameStart?.Invoke();
         pf.CreateNewProblem();
+        ef.CreateNewEnemyShip();
     }
 
     public void EscapeToMainMenu()
@@ -41,16 +47,24 @@ public class GameController : MonoBehaviour
         uic.ShowHideGameplayPanels(false);
         uic.ShowHideMainMenuPanel(true);
         sk.ResetProblemCount();
+        dh.ResetDiamondCount();
     }
 
     public void HandleCorrectAnswer()
     {
         Debug.Log("Correct!");
-        sk.IncrementProblemCount();
-        //Do the fun effect
-        //Go to the next problem.
-        pf.CreateNewProblem();
+        // Autokill for now, later have a cooler visual effect. Missile shooting?
+        ef.AutoKillCurrentEnemy();
+    }
 
+    public void HandleEnemyShipDestroyed(bool wasDiamondStolen)
+    {
+        if (!wasDiamondStolen)
+        {
+            sk.IncrementProblemCount();
+        }
+        pf.CreateNewProblem();
+        ef.CreateNewEnemyShip();
     }
 
     public void HandleIncorrectAnswer()
@@ -58,6 +72,9 @@ public class GameController : MonoBehaviour
         Debug.Log("Wrong :(");
         //Do the bad effect or lose a life whatnot
         //Go to the next problem.
-        pf.CreateNewProblem();
+
+
+        //pf.CreateNewProblem();
+        //ef.CreateNewEnemyShip();
     }
 }

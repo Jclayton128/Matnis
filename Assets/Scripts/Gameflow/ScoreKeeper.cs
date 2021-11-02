@@ -28,4 +28,9 @@ public class ScoreKeeper : MonoBehaviour
         _problemCount = 0;
         spd.UpdateScore(_problemCount);
     }
+
+    public int GetProblemCount()
+    {
+        return _problemCount;
+    }
 }
