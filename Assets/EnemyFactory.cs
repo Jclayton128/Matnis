@@ -8,6 +8,7 @@ public class EnemyFactory : MonoBehaviour
     DiamondHolder dh;
     GameController gc;
     ScoreKeeper sk;
+    GameModeHolder gmh;
 
     //param
     float baseMoveSpeed = 0.5f;
@@ -23,6 +24,7 @@ public class EnemyFactory : MonoBehaviour
         dh = FindObjectOfType<DiamondHolder>();
         gc = FindObjectOfType<GameController>();
         sk = FindObjectOfType<ScoreKeeper>();
+        gmh = FindObjectOfType<GameModeHolder>();
     }
     public void CreateNewEnemyShip()
     {
@@ -34,6 +36,7 @@ public class EnemyFactory : MonoBehaviour
         _currentMoveSpeed = baseMoveSpeed + sk.GetProblemCount() * speedPerWin;
         _currentEnemyShip = Instantiate(enemyShipPrefab, shipStartPoint, Quaternion.identity).GetComponent<EnemyShip>();
         _currentEnemyShip.SetNavData(dh.GetClosestDiamondTransform(), shipStartPoint, _currentMoveSpeed, this);
+        _currentEnemyShip.GetComponent<SpriteRenderer>().sprite = gmh.GetCurrentGameMode().ModeSprite;
     }
 
     public void AutoKillCurrentEnemy()
@@ -43,6 +46,7 @@ public class EnemyFactory : MonoBehaviour
 
     public void HandleEnemyShipDeath()
     {
+        _currentEnemyShip = null;
         gc.HandleEnemyShipDestroyed(false);
     }
 
@@ -50,5 +54,15 @@ public class EnemyFactory : MonoBehaviour
     {
         dh.DestroyClosestDiamondPostCapture();
         gc.HandleEnemyShipDestroyed(true);
+
+    }
+
+    public void ResetOnNewGame()
+    {
+        if (_currentEnemyShip)
+        {
+            _currentEnemyShip.DestroyEnemyShip();
+        }
+        _currentEnemyShip = null;
     }
 }

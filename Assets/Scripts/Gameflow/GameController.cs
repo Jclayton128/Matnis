@@ -25,16 +25,16 @@ public class GameController : MonoBehaviour
         pf = FindObjectOfType<ProblemFactory>();
         sk = FindObjectOfType<ScoreKeeper>();
         dh = FindObjectOfType<DiamondHolder>();
+        dh.OnNoDiamondsRemaining += MoveToScoreScreenAfterGameEnd;
         ef = FindObjectOfType<EnemyFactory>();
-
-
-
     }
 
     public void BeginGameplay()
     {
         uic.ShowHideGameplayPanels(true);
         uic.ShowHideMainMenuPanel(false);
+        uic.ShowHideEscapePanel(true);
+        uic.ShowHideScoresPanel(false);
         IsInGame = true;
         OnGameStart?.Invoke();
         pf.CreateNewProblem();
@@ -46,8 +46,11 @@ public class GameController : MonoBehaviour
         IsInGame = false;
         uic.ShowHideGameplayPanels(false);
         uic.ShowHideMainMenuPanel(true);
+        uic.ShowHideEscapePanel(false);
+        uic.ShowHideScoresPanel(false);
         sk.ResetProblemCount();
         dh.ResetDiamondCount();
+        ef.ResetOnNewGame();
     }
 
     public void HandleCorrectAnswer()
@@ -77,4 +80,14 @@ public class GameController : MonoBehaviour
         //pf.CreateNewProblem();
         //ef.CreateNewEnemyShip();
     }
+    private void MoveToScoreScreenAfterGameEnd()
+    {
+        IsInGame = false;
+        uic.ShowHideScoresPanel(true);
+        uic.ShowHideEscapePanel(true);
+        uic.ShowHideGameplayPanels(false);
+        uic.ShowHideMainMenuPanel(false);
+    }
+
+
 }

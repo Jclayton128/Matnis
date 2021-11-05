@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2339827003ad1a142b0f46b97caed4e4, type: 3}
   m_Name: ZeroPlusSmalls
   m_EditorClassIdentifier: 
-  ModeSprite: {fileID: 0}
+  ModeSprite: {fileID: 21300000, guid: 7097bc15392197e4c81e7ac7f1d7047c, type: 3}
   ModeName: SmallPlusZero
   SelectedMode: 0

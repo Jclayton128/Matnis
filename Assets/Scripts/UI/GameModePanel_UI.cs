@@ -6,7 +6,9 @@ using TMPro;
 
 public class GameModePanel_UI : UI_Driver
 {
+    
     [SerializeField] TextMeshProUGUI modeTMP = null;
+    [SerializeField] Image modeFrameImage = null;
     [SerializeField] Image modeImage = null;
 
 
@@ -14,6 +16,7 @@ public class GameModePanel_UI : UI_Driver
     {
         modeTMP.enabled = shouldBeShown;
         modeImage.enabled = shouldBeShown;
+        modeFrameImage.enabled = shouldBeShown;
     }
 
     public void UpdateGameModeUI(GameMode mode)
