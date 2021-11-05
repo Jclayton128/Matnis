@@ -65,9 +65,16 @@ public class GameController : MonoBehaviour
         if (!wasDiamondStolen)
         {
             sk.IncrementProblemCount();
+            pf.CreateNewProblem();
+            ef.CreateNewEnemyShip();
         }
-        pf.CreateNewProblem();
-        ef.CreateNewEnemyShip();
+
+        if (wasDiamondStolen && dh.CheckIfDiamondsAreLeft())
+        {
+            pf.CreateNewProblem();
+            ef.CreateNewEnemyShip();
+        }
+
     }
 
     public void HandleIncorrectAnswer()

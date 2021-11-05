@@ -53,16 +53,17 @@ public class EnemyFactory : MonoBehaviour
     public void HandleEnemyShipReturnWithDiamond()
     {
         dh.DestroyClosestDiamondPostCapture();
+        _currentEnemyShip = null;
         gc.HandleEnemyShipDestroyed(true);
 
     }
 
     public void ResetOnNewGame()
     {
-        if (_currentEnemyShip)
-        {
-            _currentEnemyShip.DestroyEnemyShip();
-        }
+        //foreach (var go in GameObject.FindGameObjectsWithTag("EnemyShip"))
+        //{
+        //    Destroy(go);
+        //}
         _currentEnemyShip = null;
     }
 }

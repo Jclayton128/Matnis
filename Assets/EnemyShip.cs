@@ -59,13 +59,14 @@ public class EnemyShip : MonoBehaviour
     public void DestroyEnemyShip()
     {
         ef.HandleEnemyShipDeath();
-        targetDiamond.transform.parent = null;
+        targetDiamond.transform.parent = null ;
         Destroy(gameObject);
     }
 
     public void ReturnToBase()
     {
         ef.HandleEnemyShipReturnWithDiamond();
+        targetDiamond.transform.parent = null;
         Destroy(gameObject);
     }
 }

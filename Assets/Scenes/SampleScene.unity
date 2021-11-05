@@ -1915,8 +1915,8 @@ RectTransform:
   - {fileID: 1913158543}
   - {fileID: 1116542949}
   - {fileID: 843312415}
-  - {fileID: 1427631343}
   - {fileID: 1521729441}
+  - {fileID: 1427631343}
   - {fileID: 1857250006}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -1942,7 +1942,8 @@ MonoBehaviour:
   - {fileID: 1116542952}
   - {fileID: 843312418}
   _mainMenuPanel: {fileID: 1427631346}
-  scorePanel: {fileID: 0}
+  scorePanel: {fileID: 1521729442}
+  escapePanel: {fileID: 1857250010}
 --- !u!1 &1116542948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,7 +2384,7 @@ RectTransform:
   - {fileID: 1000447054}
   - {fileID: 1840473402}
   m_Father: {fileID: 1021788519}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0000005933974, y: 0}
   m_AnchorMax: {x: 1.0000001, y: 1}
@@ -2492,7 +2493,7 @@ RectTransform:
   - {fileID: 2003454197}
   - {fileID: 1922061675}
   m_Father: {fileID: 1021788519}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
