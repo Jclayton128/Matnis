@@ -6,6 +6,7 @@ public class GameModeHolder : MonoBehaviour
 {
     //inits
     GameModePanel_UI gmd;
+    AudioController ac;
 
     //param
     [SerializeField] GameMode[] _possibleGameModes = null;
@@ -18,6 +19,7 @@ public class GameModeHolder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ac = FindObjectOfType<AudioController>();
         gmd = FindObjectOfType<GameModePanel_UI>();
         _currentGameMode = _possibleGameModes[_index];
         gmd.UpdateGameModeUI(_currentGameMode);
@@ -33,6 +35,7 @@ public class GameModeHolder : MonoBehaviour
         }
         _currentGameMode = _possibleGameModes[_index];
         gmd.UpdateGameModeUI(_currentGameMode);
+        ac.PlayToggleGameMode();
     }
 
     public void ToggleRight()
@@ -44,6 +47,7 @@ public class GameModeHolder : MonoBehaviour
         }
         _currentGameMode = _possibleGameModes[_index];
         gmd.UpdateGameModeUI(_currentGameMode);
+        ac.PlayToggleGameMode();
     }
 
     public GameMode GetCurrentGameMode()

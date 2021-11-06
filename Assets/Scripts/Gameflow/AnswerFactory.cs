@@ -24,17 +24,29 @@ public class AnswerFactory : MonoBehaviour
     {
         int[] answerOptions = new int[4];
 
-        for (int i = 0; i < 1; i++)
+        if (seedAnswer > 1)
         {
-            answerOptions[i] = seedAnswer - 1 + i;
+            for (int i = 0; i < 2; i++)
+            {
+                answerOptions[i] = seedAnswer - 2 + i;
+            }
+            for (int i = 2; i < 4; i++)
+            {
+                answerOptions[i] = seedAnswer + i - 1;
+            }
+            //Debug.Log($"Given {seedAnswer}, came up with {answerOptions[0]},{answerOptions[1]}, {answerOptions[2]}," +
+            //    $"{answerOptions[3]}");
         }
-        for (int i = 1; i < 4; i++)
-        {
-            answerOptions[i] = seedAnswer + i - 0;
+        else 
+        { 
+            for (int j = 0; j < 4; j++)
+            {
+                answerOptions[j] = seedAnswer + j + 1;
+            }
         }
-        //Debug.Log($"Given {seedAnswer}, came up with {answerOptions[0]},{answerOptions[1]}, {answerOptions[2]}," +
-        //    $"{answerOptions[3]}");
         return answerOptions;
+
+
     }
 
     private int[] InsertCorrectOption(int[] answerArray, int correctAnswer, out int indexOfCorrectAnswer)

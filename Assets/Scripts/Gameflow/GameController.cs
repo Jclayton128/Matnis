@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     DiamondHolder dh;
     EnemyFactory ef;
     AnswerPanel_UI apd;
+    AudioController ac;
     public Action OnGameStart;
 
     //param
@@ -33,10 +34,12 @@ public class GameController : MonoBehaviour
         dh.OnNoDiamondsRemaining += MoveToScoreScreenAfterGameEnd;
         ef = FindObjectOfType<EnemyFactory>();
         apd = FindObjectOfType<AnswerPanel_UI>();
+        ac = FindObjectOfType<AudioController>();
     }
 
     public void BeginGameplay()
     {
+        ac.PlayEnterGame();
         uic.ShowHideGameplayPanels(true);
         uic.ShowHideMainMenuPanel(false);
         uic.ShowHideEscapePanel(true);
@@ -49,6 +52,7 @@ public class GameController : MonoBehaviour
 
     public void EscapeToMainMenu()
     {
+        ac.PlayWrongAnswer();
         penaltyFactor = 0;
         IsInGame = false;
         uic.ShowHideGameplayPanels(false);
@@ -69,6 +73,7 @@ public class GameController : MonoBehaviour
 
     public void HandleEnemyShipDestroyed(bool wasDiamondStolen)
     {
+        ac.PlayEnemyShipDestroyed();
         if (!wasDiamondStolen)
         {
             sk.IncrementProblemCount();
@@ -78,6 +83,7 @@ public class GameController : MonoBehaviour
 
         if (wasDiamondStolen && dh.CheckIfDiamondsAreLeft())
         {
+            ac.PlayCrystalDestroyed();
             pf.CreateNewProblem();
             ef.CreateNewEnemyShip();
         }
@@ -89,7 +95,7 @@ public class GameController : MonoBehaviour
         Debug.Log("Wrong :(");
         //Do the bad effect or lose a life whatnot
         //Go to the next problem.
-
+        ac.PlayWrongAnswer();
         penaltyFactor = 1;
 
         //pf.CreateNewProblem();

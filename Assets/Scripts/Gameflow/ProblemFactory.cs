@@ -102,6 +102,33 @@ public class ProblemFactory : MonoBehaviour
                 problem = ScrambleProblem(problem);
                 return problem;
 
+            case GameMode.Mode.MinusOne:
+                number = UnityEngine.Random.Range(1, 10);
+                problem.TopNumber = number;
+                problem.BottomNumber = 1;
+                problem.OpChar = '-';
+                problem.Answer = problem.TopNumber - problem.BottomNumber;
+                //problem = ScrambleProblem(problem);
+                return problem;
+
+            case GameMode.Mode.MinusTwo:
+                number = UnityEngine.Random.Range(2, 10);
+                problem.TopNumber = number;
+                problem.BottomNumber = 2;
+                problem.OpChar = '-';
+                problem.Answer = problem.TopNumber - problem.BottomNumber;
+                //problem = ScrambleProblem(problem);
+                return problem;
+
+            case GameMode.Mode.MinusThree:
+                number = UnityEngine.Random.Range(3, 10);
+                problem.TopNumber = number;
+                problem.BottomNumber = 3;
+                problem.OpChar = '-';
+                problem.Answer = problem.TopNumber - problem.BottomNumber;
+                //problem = ScrambleProblem(problem);
+                return problem;
+
             default:
                 problem.TopNumber = 0;
                 problem.BottomNumber = 0;
