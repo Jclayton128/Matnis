@@ -48,7 +48,7 @@ public class DiamondHolder : MonoBehaviour
         {
             _remainingDiamonds.Add(diamond.transform);
         }
-        for (int i = 0; i < _remainingDiamonds.Count; i++)
+        for (int i = 0; i < _startingPositions.Count; i++)
         {
             _remainingDiamonds[i].transform.position = _startingPositions[i];
         }

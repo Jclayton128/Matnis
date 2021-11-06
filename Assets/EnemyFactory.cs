@@ -12,8 +12,8 @@ public class EnemyFactory : MonoBehaviour
 
     //param
     float baseMoveSpeed = 0.5f;
-    float speedPerWin = 0.2f;
-    Vector2 shipStartPoint = new Vector2(0, 4f);
+    float speedPerWin = 0.1f;
+    Vector2 shipStartPoint = new Vector2(0, 3f);
 
     //state
     EnemyShip _currentEnemyShip;
@@ -64,6 +64,7 @@ public class EnemyFactory : MonoBehaviour
         //{
         //    Destroy(go);
         //}
+        Destroy(_currentEnemyShip.gameObject);
         _currentEnemyShip = null;
     }
 }
