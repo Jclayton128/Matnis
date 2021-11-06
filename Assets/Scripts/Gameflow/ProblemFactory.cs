@@ -37,7 +37,7 @@ public class ProblemFactory : MonoBehaviour
         {            
             case GameMode.Mode.Zeros:
                 problem.TopNumber = 0;
-                problem.BottomNumber = UnityEngine.Random.Range(0, 10);
+                problem.BottomNumber = UnityEngine.Random.Range(1, 10);
                 problem.OpChar = '+';
                 problem.Answer = problem.TopNumber + problem.BottomNumber;
                 //Debug.Log($"new problem: {problem.TopNumber} + {problem.BottomNumber} = {problem.Answer}");

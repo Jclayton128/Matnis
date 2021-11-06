@@ -6,9 +6,7 @@ using System.Linq;
 
 public class AnswerFactory : MonoBehaviour
 {
-    AnswerPanel_UI apd;
-
-   
+    AnswerPanel_UI apd;   
 
     public void UpdateAnswerSelection(Problem problem)
     {
@@ -26,13 +24,13 @@ public class AnswerFactory : MonoBehaviour
     {
         int[] answerOptions = new int[4];
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 1; i++)
         {
-            answerOptions[i] = seedAnswer - 2 + i;
+            answerOptions[i] = seedAnswer - 1 + i;
         }
-        for (int i = 2; i < 4; i++)
+        for (int i = 1; i < 4; i++)
         {
-            answerOptions[i] = seedAnswer + i -1;
+            answerOptions[i] = seedAnswer + i - 0;
         }
         //Debug.Log($"Given {seedAnswer}, came up with {answerOptions[0]},{answerOptions[1]}, {answerOptions[2]}," +
         //    $"{answerOptions[3]}");
