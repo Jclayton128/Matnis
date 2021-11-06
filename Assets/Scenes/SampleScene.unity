@@ -1479,8 +1479,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _possibleGameModes:
   - {fileID: 11400000, guid: 1ce70f98755331441b7e601306a7cc5a, type: 2}
+  - {fileID: 11400000, guid: d27114f938ae76f4693cd30e4f4baa95, type: 2}
   - {fileID: 11400000, guid: a854885ab0288bf49875f919d9b7a05e, type: 2}
+  - {fileID: 11400000, guid: a611c0b1fb421de419b0d255bf7cc0c9, type: 2}
   - {fileID: 11400000, guid: 5a1f29b3306a0614aa94e746beb72687, type: 2}
+  - {fileID: 11400000, guid: 533d2791f028fa746b91371e99946bcb, type: 2}
+  - {fileID: 11400000, guid: 12f0c13dab5de09499a96b5a6f74c9aa, type: 2}
   _currentGameMode: {fileID: 0}
 --- !u!4 &638781474
 Transform:

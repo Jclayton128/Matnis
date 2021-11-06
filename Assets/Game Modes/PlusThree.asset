@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2339827003ad1a142b0f46b97caed4e4, type: 3}
-  m_Name: SmallDoubles
+  m_Name: PlusThree
   m_EditorClassIdentifier: 
-  ModeSprite: {fileID: 21300000, guid: f1d5bd7a983b7774a8eb35083c0e8012, type: 3}
-  ModeName: SmallDoubles
-  SelectedMode: 2
+  ModeSprite: {fileID: 21300000, guid: 6cc6f2d1344ae3844b982fa5ef6ff6b0, type: 3}
+  ModeName: Plus Three
+  SelectedMode: 5

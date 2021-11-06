@@ -7,6 +7,6 @@ public class GameMode : ScriptableObject
 {
     public Sprite ModeSprite = null;
     public string ModeName = "";
-    public enum Mode { ZeroPlusSmallMix, SmallMixPlusSmallMix, SmallDoubles, SmallDoublesPlusOne};
+    public enum Mode { Zeros, SmallMix, SmallDoubles, PlusOne, PlusTwo, PlusThree, PlusFour};
     public Mode SelectedMode;
 }
