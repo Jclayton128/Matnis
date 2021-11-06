@@ -9,6 +9,8 @@ public class AnswerPanel_UI : UI_Driver
     [SerializeField] Image backgroundImage = null;
     [SerializeField] GameObject[] _answerButtons = null;
     [SerializeField] TextMeshProUGUI[] answerTMPs = null;
+    [SerializeField] Image penaltyBarShell = null;
+    [SerializeField] Image penaltyBarFill = null;
     GameController gc;
 
     //state
@@ -25,6 +27,8 @@ public class AnswerPanel_UI : UI_Driver
         {
             button.SetActive(shouldBeShown);
         }
+        penaltyBarFill.enabled = shouldBeShown;
+        penaltyBarShell.enabled = shouldBeShown;
     }
 
     public void UpdateAnswerButtonOptions(int[] answers, int indexOfCorrectAnswer)
@@ -45,6 +49,8 @@ public class AnswerPanel_UI : UI_Driver
 
     public void HandleAnswerButtonPress(int buttonIndex)
     {
+        if (gc.CheckIfStillInPenalty()) { return; }
+
         if (buttonIndex == _indexOfCorrectAnswer)
         {
             gc.HandleCorrectAnswer();
@@ -54,6 +60,11 @@ public class AnswerPanel_UI : UI_Driver
         {
             gc.HandleIncorrectAnswer();
         }
+    }
+
+    public void UpdatePenaltyBar(float factor)
+    {
+        penaltyBarFill.transform.localScale = new Vector2(factor, 1);
     }
 
 

@@ -12,11 +12,16 @@ public class GameController : MonoBehaviour
     GameModeHolder gmh;
     DiamondHolder dh;
     EnemyFactory ef;
+    AnswerPanel_UI apd;
     public Action OnGameStart;
 
+    //param
+    float penaltyDecreaseRate = 0.5f;  //scale change per second
 
     //state
     public bool IsInGame { get; private set; } = false;
+    private float penaltyFactor = 0;
+
 
     private void Start()
     {
@@ -27,6 +32,7 @@ public class GameController : MonoBehaviour
         dh = FindObjectOfType<DiamondHolder>();
         dh.OnNoDiamondsRemaining += MoveToScoreScreenAfterGameEnd;
         ef = FindObjectOfType<EnemyFactory>();
+        apd = FindObjectOfType<AnswerPanel_UI>();
     }
 
     public void BeginGameplay()
@@ -43,6 +49,7 @@ public class GameController : MonoBehaviour
 
     public void EscapeToMainMenu()
     {
+        penaltyFactor = 0;
         IsInGame = false;
         uic.ShowHideGameplayPanels(false);
         uic.ShowHideMainMenuPanel(true);
@@ -83,9 +90,22 @@ public class GameController : MonoBehaviour
         //Do the bad effect or lose a life whatnot
         //Go to the next problem.
 
+        penaltyFactor = 1;
 
         //pf.CreateNewProblem();
         //ef.CreateNewEnemyShip();
+    }
+
+    public bool CheckIfStillInPenalty()
+    {
+        if (penaltyFactor > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     private void MoveToScoreScreenAfterGameEnd()
     {
@@ -96,5 +116,12 @@ public class GameController : MonoBehaviour
         uic.ShowHideMainMenuPanel(false);
     }
 
-
+    private void Update()
+    {
+        if (penaltyFactor > 0)
+        {
+            penaltyFactor -= Time.deltaTime * penaltyDecreaseRate;
+            apd.UpdatePenaltyBar(penaltyFactor);
+        }
+    }
 }
