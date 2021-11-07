@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyFactory : MonoBehaviour
 {
     [SerializeField] GameObject enemyShipPrefab = null;
+    [SerializeField] GameObject shipDebrisPrefab = null;
     DiamondHolder dh;
     GameController gc;
     ScoreKeeper sk;
@@ -46,8 +47,10 @@ public class EnemyFactory : MonoBehaviour
 
     public void HandleEnemyShipDeath()
     {
+        Instantiate(shipDebrisPrefab, _currentEnemyShip.transform.position, Quaternion.identity);
         _currentEnemyShip = null;
         gc.HandleEnemyShipDestroyed(false);
+        
     }
 
     public void HandleEnemyShipReturnWithDiamond()

@@ -1193,6 +1193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyShipPrefab: {fileID: 6196392515804662785, guid: f6b0c118b0b90c847ba0a2c9a53adf74, type: 3}
+  shipDebrisPrefab: {fileID: 7816898911028181793, guid: 1d595e915071a2142bf315b76c80baec, type: 3}
 --- !u!4 &555412687
 Transform:
   m_ObjectHideFlags: 0
@@ -2644,7 +2645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1427631343
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2754,7 +2755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1521729441
 RectTransform:
   m_ObjectHideFlags: 0

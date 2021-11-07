@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     public Action OnGameStart;
 
     //param
-    float penaltyDecreaseRate = 0.5f;  //scale change per second
+    float penaltyDecreaseRate = 1f;  //scale change per second
 
     //state
     public bool IsInGame { get; private set; } = false;
