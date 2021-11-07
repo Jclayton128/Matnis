@@ -17,11 +17,12 @@ public class GameController : MonoBehaviour
     public Action OnGameStart;
 
     //param
-    float penaltyDecreaseRate = 1f;  //scale change per second
+    float penaltyDecreaseRate = 1.3f;  //scale change per second
 
     //state
     public bool IsInGame { get; private set; } = false;
     private float penaltyFactor = 0;
+    private int recentIncorrectAnswerIndex = -1;
 
 
     private void Start()
@@ -42,7 +43,6 @@ public class GameController : MonoBehaviour
         ac.PlayEnterGame();
         uic.ShowHideGameplayPanels(true);
         uic.ShowHideMainMenuPanel(false);
-        uic.ShowHideEscapePanel(true);
         uic.ShowHideScoresPanel(false);
         IsInGame = true;
         OnGameStart?.Invoke();
@@ -52,12 +52,11 @@ public class GameController : MonoBehaviour
 
     public void EscapeToMainMenu()
     {
-        ac.PlayWrongAnswer();
+        ac.PlayEscapeToMainMenu();
         penaltyFactor = 0;
         IsInGame = false;
         uic.ShowHideGameplayPanels(false);
         uic.ShowHideMainMenuPanel(true);
-        uic.ShowHideEscapePanel(false);
         uic.ShowHideScoresPanel(false);
         sk.ResetProblemCount();
         dh.ResetDiamondCount();
@@ -73,31 +72,35 @@ public class GameController : MonoBehaviour
 
     public void HandleEnemyShipDestroyed(bool wasDiamondStolen)
     {
-        ac.PlayEnemyShipDestroyed();
+
         if (!wasDiamondStolen)
         {
+            ac.PlayEnemyShipDestroyed();
             sk.IncrementProblemCount();
             pf.CreateNewProblem();
             ef.CreateNewEnemyShip();
         }
 
-        if (wasDiamondStolen && dh.CheckIfDiamondsAreLeft())
+        if (wasDiamondStolen)
         {
             ac.PlayCrystalDestroyed();
-            pf.CreateNewProblem();
-            ef.CreateNewEnemyShip();
+            if (dh.CheckIfDiamondsAreLeft())
+            {
+                pf.CreateNewProblem();
+                ef.CreateNewEnemyShip();
+            }
         }
 
     }
 
-    public void HandleIncorrectAnswer()
+    public void HandleIncorrectAnswer(int indexOfWrongAnswer)
     {
         Debug.Log("Wrong :(");
         //Do the bad effect or lose a life whatnot
         //Go to the next problem.
         ac.PlayWrongAnswer();
         penaltyFactor = 1;
-
+        recentIncorrectAnswerIndex = indexOfWrongAnswer;
         //pf.CreateNewProblem();
         //ef.CreateNewEnemyShip();
     }
@@ -117,7 +120,6 @@ public class GameController : MonoBehaviour
     {
         IsInGame = false;
         uic.ShowHideScoresPanel(true);
-        uic.ShowHideEscapePanel(true);
         uic.ShowHideGameplayPanels(false);
         uic.ShowHideMainMenuPanel(false);
     }
@@ -127,7 +129,7 @@ public class GameController : MonoBehaviour
         if (penaltyFactor > 0)
         {
             penaltyFactor -= Time.deltaTime * penaltyDecreaseRate;
-            apd.UpdatePenaltyBar(penaltyFactor);
+            apd.UpdateWrongAnswerChoiceWithPenaltyFactor(recentIncorrectAnswerIndex, penaltyFactor);
         }
     }
 }

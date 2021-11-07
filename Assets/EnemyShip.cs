@@ -7,6 +7,7 @@ public class EnemyShip : MonoBehaviour
     Transform targetDiamond;
     Vector3 homePosition;
     EnemyFactory ef;
+    AudioController ac;
 
     //param
 
@@ -30,9 +31,11 @@ public class EnemyShip : MonoBehaviour
 
     private void PickUpDiamond()
     {
+
         _hasDiamond = true;
         GetComponent<SpriteRenderer>().flipY = true;
         targetDiamond.transform.parent = transform;
+        ac.PlayCrystalPickUp();
     }
 
     private void FixedUpdate()
@@ -48,12 +51,13 @@ public class EnemyShip : MonoBehaviour
         
     }
 
-    public void SetNavData(Transform target, Vector3 returnPosition, float moveSpeed, EnemyFactory enemyFactorRef)
+    public void InitializeShip(Transform target, Vector3 returnPosition, float moveSpeed, EnemyFactory enemyFactorRef, AudioController ac)
     {
         targetDiamond = target;
         homePosition = returnPosition;
         _moveSpeed = moveSpeed;
         ef = enemyFactorRef;
+        this.ac = ac;
     }
 
     public void DestroyEnemyShip()

@@ -11,6 +11,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] AudioClip enemyShipDestroyed = null;
     [SerializeField] AudioClip toggleGameMode = null;
     [SerializeField] AudioClip wrongAnswer = null;
+    [SerializeField] AudioClip escapeToMainMenu = null;
 
     AudioSource auso;
 
@@ -44,5 +45,10 @@ public class AudioController : MonoBehaviour
     public void PlayWrongAnswer()
     {
         auso.PlayOneShot(wrongAnswer);
+    }
+
+    public void PlayEscapeToMainMenu()
+    {
+        auso.PlayOneShot(escapeToMainMenu);
     }
 }

@@ -18,6 +18,7 @@ public class AnswerFactory : MonoBehaviour
             apd = FindObjectOfType<AnswerPanel_UI>();
         }
         apd.UpdateAnswerButtonOptions(answerOptions, indexOfCorrectAnswer);
+        apd.ResetAllTMPcolors();
     }
 
     private int[] CreateCloseIncorrectAnswers(int seedAnswer)

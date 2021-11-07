@@ -7,21 +7,16 @@ public class UI_Controller : MonoBehaviour
     [SerializeField] UI_Driver[] _gamePanels = null;
     [SerializeField] UI_Driver _mainMenuPanel = null;
     [SerializeField] UI_Driver scorePanel = null;
-    [SerializeField] UI_Driver escapePanel = null;
 
     void Start()
     {
         ShowHideScoresPanel(false);
         ShowHideGameplayPanels(false);
-        ShowHideEscapePanel(false);
         ShowHideMainMenuPanel(true);
 
     }
 
-    public void ShowHideEscapePanel(bool shouldBeShown)
-    {
-        escapePanel.ShowHideAllUIElements(shouldBeShown);
-    }
+
 
     public void ShowHideScoresPanel(bool shouldBeShown)
     {

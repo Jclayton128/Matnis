@@ -58,13 +58,26 @@ public class AnswerPanel_UI : UI_Driver
         }
         else
         {
-            gc.HandleIncorrectAnswer();
+            gc.HandleIncorrectAnswer(buttonIndex);
         }
     }
 
     public void UpdatePenaltyBar(float factor)
     {
-        penaltyBarFill.transform.localScale = new Vector2(factor, 1);
+        penaltyBarFill.transform.localScale = new Vector2(1, factor);
+    }
+    
+    public void ResetAllTMPcolors()
+    {
+        foreach (var tmp in answerTMPs)
+        {
+            tmp.color = Color.HSVToRGB(1f, 1f, 0);
+        }
+    }
+
+    public void UpdateWrongAnswerChoiceWithPenaltyFactor(int index, float factor)
+    {
+        answerTMPs[index].color = Color.HSVToRGB(1, 1, factor);
     }
 
 
